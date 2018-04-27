@@ -1,0 +1,49 @@
+apply from: 'config.gradle'
+
+buildscript {
+    
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.0.1'
+
+//        //https://github.com/dcendents/android-maven-gradle-plugin
+//        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.0'
+//        //https://github.com/bintray/gradle-bintray-plugin
+//        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.0'
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+ext {
+    projectName = 'BaseProject'
+    projectDesc = 'android base project'
+    projectGroup = 'com.classic.android'
+    projectVersionCode = 1
+
+    projectVersion = '1.0'
+    projectArtifactId = 'clean-rxjava'
+
+    orgName = 'classic'
+    repoName = 'maven'
+
+    developerId = 'qyxxjd'
+    developerName = 'classic'
+    developerEmail = 'pgliubin@gmail.com'
+    githubUrl = 'https://github.com/qyxxjd/BaseProject'
+
+    licensesName = 'MIT'
+    licensesUrl = 'http://opensource.org/licenses/MIT'
+}
