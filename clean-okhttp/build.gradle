@@ -26,8 +26,13 @@ dependencies {
     compileOnly rootProject.ext.easyPermissions
     compileOnly rootProject.ext.rxJava
     compileOnly rootProject.ext.rxAndroid
+    compileOnly rootProject.ext.retrofit
+    compileOnly rootProject.ext.okhttp
+    compileOnly rootProject.ext.rxJavaForRetrofit
+
+    compileOnly rootProject.ext.cleanRxJava
 }
 
-//apply from: rootProject.file('gradle/maven.gradle')
-//apply from: rootProject.file('gradle/bintray.gradle')
-//apply from: rootProject.file('gradle/findbugs.gradle')
+apply from: rootProject.file('gradle/maven.gradle')
+apply from: rootProject.file('gradle/bintray.gradle')
+apply from: rootProject.file('gradle/findbugs.gradle')

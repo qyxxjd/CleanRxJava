@@ -56,16 +56,9 @@ public final class RxAutoCleanDelegate implements AutoClean, LifecycleListener {
      */
     @Override
     public <Type> ObservableTransformer<Type, Type> bindEvent(final int event) {
-        final Observable<Integer> observable = mBehaviorSubject.filter(new Predicate<Integer>() {
-            @Override public boolean test(Integer integer) throws Exception {
-                return integer == event;
-            }
-        }).take(1);
-        return new ObservableTransformer<Type, Type>() {
-            @Override public ObservableSource<Type> apply(Observable<Type> upstream) {
-                return upstream.takeUntil(observable);
-            }
-        };
+        final Observable<Integer> observable = mBehaviorSubject.filter(new InnerPredicate(event))
+                                                               .take(1);
+        return new InnerTransformer<>(observable);
     }
 
     /**
@@ -81,22 +74,10 @@ public final class RxAutoCleanDelegate implements AutoClean, LifecycleListener {
     @SuppressWarnings("SpellCheckingInspection")
     @Override
     public <Type> FlowableTransformer<Type, Type> bindEventWithFlowable(final int event) {
-        final Flowable<Integer> observable = mBehaviorSubject
-                .toFlowable(BackpressureStrategy.LATEST)
-                .filter(new Predicate<Integer>() {
-                    @Override
-                    public boolean test(Integer integer) throws Exception {
-                        return integer == event;
-                    }
-                })
-                .take(1);
-
-        return new FlowableTransformer<Type, Type>() {
-            @Override
-            public Publisher<Type> apply(@io.reactivex.annotations.NonNull Flowable<Type> upstream) {
-                return upstream.takeUntil(observable);
-            }
-        };
+        final Flowable<Integer> flowable = mBehaviorSubject.toFlowable(BackpressureStrategy.LATEST)
+                                                           .filter(new InnerPredicate(event))
+                                                           .take(1);
+        return new InnerFlowableTransformer<>(flowable);
     }
 
     /**
@@ -131,5 +112,44 @@ public final class RxAutoCleanDelegate implements AutoClean, LifecycleListener {
     @Override
     public void clear(Disposable... disposables) {
         RxUtil.clear(disposables);
+    }
+
+
+    private static final class InnerPredicate implements Predicate<Integer> {
+        private final int mEvent;
+
+        InnerPredicate(int event) {
+            mEvent = event;
+        }
+
+        @Override
+        public boolean test(Integer integer) {
+            return integer == mEvent;
+        }
+    }
+    private static final class InnerTransformer<Type> implements ObservableTransformer<Type, Type> {
+        private final Observable<Integer> mObservable;
+
+        InnerTransformer(Observable<Integer> observable) {
+            mObservable = observable;
+        }
+
+        @Override
+        public ObservableSource<Type> apply(Observable<Type> upstream) {
+            return upstream.takeUntil(mObservable);
+        }
+    }
+    @SuppressWarnings("SpellCheckingInspection")
+    private static final class InnerFlowableTransformer<Type> implements FlowableTransformer<Type, Type> {
+        private final Flowable<Integer> mFlowable;
+
+        InnerFlowableTransformer(Flowable<Integer> flowable) {
+            mFlowable = flowable;
+        }
+
+        @Override
+        public Publisher<Type> apply(Flowable<Type> upstream) {
+            return upstream.takeUntil(mFlowable);
+        }
     }
 }

@@ -7,12 +7,12 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.1'
+        classpath 'com.android.tools.build:gradle:3.1.2'
 
-//        //https://github.com/dcendents/android-maven-gradle-plugin
-//        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.0'
-//        //https://github.com/bintray/gradle-bintray-plugin
-//        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.0'
+        //https://github.com/dcendents/android-maven-gradle-plugin
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
+        //https://github.com/bintray/gradle-bintray-plugin
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.0'
     }
 }
 
@@ -28,13 +28,18 @@ task clean(type: Delete) {
 }
 
 ext {
-    projectName = 'BaseProject'
+    projectName = 'CleanRxJava'
     projectDesc = 'android base project'
-    projectGroup = 'com.classic.android'
+    projectGroup = 'com.classic.core'
     projectVersionCode = 1
 
+    // clean-rxjava
+//    projectVersion = '1.0'
+//    projectArtifactId = 'clean-rxjava'
+
+    // clean-okhttp
     projectVersion = '1.0'
-    projectArtifactId = 'clean-rxjava'
+    projectArtifactId = 'clean-okhttp'
 
     orgName = 'classic'
     repoName = 'maven'
@@ -42,7 +47,7 @@ ext {
     developerId = 'qyxxjd'
     developerName = 'classic'
     developerEmail = 'pgliubin@gmail.com'
-    githubUrl = 'https://github.com/qyxxjd/BaseProject'
+    githubUrl = 'https://github.com/qyxxjd/CleanRxJava'
 
     licensesName = 'MIT'
     licensesUrl = 'http://opensource.org/licenses/MIT'
