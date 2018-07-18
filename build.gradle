@@ -7,7 +7,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.1.2'
+        classpath 'com.android.tools.build:gradle:3.1.3'
 
         //https://github.com/dcendents/android-maven-gradle-plugin
         classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
@@ -31,15 +31,15 @@ ext {
     projectName = 'CleanRxJava'
     projectDesc = 'android base project'
     projectGroup = 'com.classic.core'
-    projectVersionCode = 1
+    projectVersionCode = 2
 
     // clean-rxjava
-//    projectVersion = '1.0'
-//    projectArtifactId = 'clean-rxjava'
+    projectVersion = '1.1'
+    projectArtifactId = 'clean-rxjava'
 
     // clean-okhttp
-    projectVersion = '1.0'
-    projectArtifactId = 'clean-okhttp'
+//    projectVersion = '1.0'
+//    projectArtifactId = 'clean-okhttp'
 
     orgName = 'classic'
     repoName = 'maven'

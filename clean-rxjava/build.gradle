@@ -28,6 +28,6 @@ dependencies {
     compileOnly rootProject.ext.rxAndroid
 }
 
-//apply from: rootProject.file('gradle/maven.gradle')
-//apply from: rootProject.file('gradle/bintray.gradle')
-//apply from: rootProject.file('gradle/findbugs.gradle')
+apply from: rootProject.file('gradle/maven.gradle')
+apply from: rootProject.file('gradle/bintray.gradle')
+apply from: rootProject.file('gradle/findbugs.gradle')

@@ -5,7 +5,7 @@
 
 ```gradle
     dependencies {
-        implementation 'com.classic.core:clean-rxjava:1.0'
+        implementation 'com.classic.core:clean-rxjava:1.1'
     }
 ```
 
